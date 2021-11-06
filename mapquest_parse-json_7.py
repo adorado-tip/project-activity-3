@@ -14,7 +14,9 @@ while True:
 
     key = "ttn208CLFkY99sFH22IwgkigBsDKjEVQ"
 
-    url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
+    routeType = input("Which route type do you want to use? [fastest, shortest, pedestrian, bicycle]: ")
+
+    url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest, "routeType":routeType})
 
     print("URL: " + (url))
 

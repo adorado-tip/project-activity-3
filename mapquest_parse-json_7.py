@@ -11,7 +11,6 @@ while True:
     if dest == "quit" or dest == "q":
         break
 
-
     key = "ttn208CLFkY99sFH22IwgkigBsDKjEVQ"
 
     routeType = input("Which route type do you want to use? [fastest, shortest, pedestrian, bicycle]: ")

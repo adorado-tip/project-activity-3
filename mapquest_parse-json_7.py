@@ -48,15 +48,15 @@ while True:
         
     elif json_status == 402:
         print("**********************************************")
-        print("Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.")
+        print(bcolors.FAIL + "Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations." + bcolors.ENDC)
         print("**********************************************\n")
     elif json_status == 611:
         print("**********************************************")
-        print("Status Code: " + str(json_status) + "; Missing an entry for one or both locations.")
+        print(bcolors.WARNING + "Status Code: " + str(json_status) + "; Missing an entry for one or both locations." + bcolors.ENDC)
         print("**********************************************\n")
     else:
         print("************************************************************************")
-        print("For Staus Code: " + str(json_status) + "; Refer to:")
+        print(bcolors.FAIL + "For Staus Code: " + str(json_status) + "; Refer to:" + bcolors.ENDC)
         print(bcolors.OKBLUE + "https://developer.mapquest.com/documentation/directions-api/status-codes" + bcolors.ENDC)
         print("************************************************************************\n")
 

@@ -3,8 +3,19 @@ import requests
 
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 while True:
-    orig = input("Starting Location: ")
+    orig = input(bcolors.HEADER + "Starting Location: ")
     if orig == "quit" or orig == "q":
         break
     dest = input("Destination: ")
@@ -14,7 +25,7 @@ while True:
     key = "ttn208CLFkY99sFH22IwgkigBsDKjEVQ"
 
     routeType = input("Which route type do you want to use? [fastest, shortest, pedestrian, bicycle]: ")
-    language = input("Which language do you want to use? [en_US, fr_FR, de_DE, ru_RU]: ")
+    language = input("Which language do you want to use? [en_US, fr_FR, de_DE, ru_RU]: " + bcolors.ENDC)
 
     url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest, "routeType":routeType, "locale": language})
 

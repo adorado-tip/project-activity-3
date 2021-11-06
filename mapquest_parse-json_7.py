@@ -25,8 +25,9 @@ while True:
     key = "ttn208CLFkY99sFH22IwgkigBsDKjEVQ"
 
     routeType = input("Which route type do you want to use? [fastest, shortest, pedestrian, bicycle]: ")
-    language = input("Which language do you want to use? [en_US, fr_FR, de_DE, ru_RU]: " + bcolors.ENDC)
-
+    language = input("Which language do you want to use? [en_US, fr_FR, de_DE, ru_RU]: ")
+    bcolors.ENDC
+    
     url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest, "routeType":routeType, "locale": language})
 
     print(bcolors.OKBLUE + "URL: " + (url) + bcolors.ENDC)

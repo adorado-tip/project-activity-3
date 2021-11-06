@@ -29,7 +29,7 @@ while True:
 
     url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest, "routeType":routeType, "locale": language})
 
-    print("URL: " + (url))
+    print(bcolors.OKBLUE + "URL: " + (url) + bcolors.ENDC)
 
     json_data = requests.get(url).json()
     json_status = json_data["info"]["statuscode"]
@@ -57,7 +57,7 @@ while True:
     else:
         print("************************************************************************")
         print("For Staus Code: " + str(json_status) + "; Refer to:")
-        print("https://developer.mapquest.com/documentation/directions-api/status-codes")
+        print(bcolors.OKBLUE + "https://developer.mapquest.com/documentation/directions-api/status-codes" + bcolors.ENDC)
         print("************************************************************************\n")
 
 

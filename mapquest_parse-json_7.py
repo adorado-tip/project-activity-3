@@ -22,7 +22,21 @@ while True:
 
     key = "ttn208CLFkY99sFH22IwgkigBsDKjEVQ"
 
-    routeType = input("Which route type do you want to use? [fastest, shortest, pedestrian, bicycle]: ")
+    routeDecision = input("""Which route type do you want to use? Choose the number next to your answer.
+[1] Quickest drive time route
+[2] Shortest driving distance route
+[3] Walking route
+[4] Will only use roads on which bicycling is appropriate
+: """)
+    if routeDecision == "1":
+        routeType = "fastest"
+    elif routeDecision == "2":
+        routeType = "shortest"
+    elif routeDecision == "3":
+        routeType = "pedestrian"
+    elif routeDecision == "4":
+        routeType = "bicycle"
+        
     language = input("Which language do you want to use? [en_US, fr_FR, de_DE, ru_RU]: ")
     bcolors.ENDC
     

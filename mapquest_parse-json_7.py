@@ -37,11 +37,84 @@ while True:
     elif routeDecision == "4":
         routeType = "bicycle"
         
-    language = input("Which language do you want to use? [en_US, fr_FR, de_DE, ru_RU]: ")
+    if routeType == "fastest" or routeType == "shortest":
+        styleDecision = input("Would you like to input your driving style for the accurate calculation of your fuel usage? If no, normal driving style will be assumed. [yes/no]: ")
+        if styleDecision == "yes":
+            styleChoice = input("""Which type of driver are you? Choose the number next to your answer.
+[1] Cautious Driver
+[2] Normal Driver
+[3] Aggressive Driver
+: """)
+            drivingStyle = styleChoice
+
+        elif styleDecision == "no":
+            drivingStyle = 2
+
+        avoidDecision = input("Is there any type of road would you like to avoid? [yes/no]: ")
+        if avoidDecision == "yes":
+            avoidChoice = input("""Which road would you like to avoid? Choose the number next to your answer.
+[1] Limited Access Highway
+[2] Toll Road
+[3] Unpaved Road
+[4] Bridge
+[5] Tunnel
+: """)
+            if avoidChoice == "1":
+                avoid = "Limited Access"
+            elif avoidChoice == "2":
+                avoid = "Toll Road"
+            elif avoidChoice == "3":
+                avoid = "Unpaved"
+            elif avoidChoice == "4":
+                avoid = "Bridge"
+            elif avoidChoice == "5":
+                avoid = "Tunnel"
+
+            language = input("Which language do you want to use? [en_US, fr_FR, de_DE, ru_RU]: ")
+
+            url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest, "routeType":routeType, "locale":language, "avoids":avoid, "drivingStyle":drivingStyle})
+
+        elif avoidDecision == "no":
+            language = input("Which language do you want to use? [en_US, fr_FR, de_DE, ru_RU]: ")
+
+            url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest, "routeType":routeType, "locale":language, "drivingStyle":drivingStyle})
+
+    elif routeType == "bicycle":
+        bikeDecision = input("Would you like to use a road grade strategy? [yes/no]: ")
+        if bikeDecision == "yes":
+            bikeChoice = input("""Which road grade strategy would you like to use? Choose the number next to your answer.
+[1] Avoid uphill road grades
+[2] Avoid downhill road grades
+[3] Avoid all hill road grades
+[4] Favor uphill road grades
+[5] Favor downhill road grades
+[6] Favor all hill road grades
+: """)
+            if bikeChoice == "1":
+                roadGradeStrategy = "AVOID_UP_HILL"
+            elif bikeChoice == "2":
+                roadGradeStrategy = "AVOID_DOWN_HILL"
+            elif bikeChoice == "3":
+                roadGradeStrategy = "AVOID_ALL_HILLS"
+            elif bikeChoice == "4":
+                roadGradeStrategy = "FAVOR_UP_HILL"
+            elif bikeChoice == "5":
+                roadGradeStrategy = "FAVOR_DOWN_HILL"
+            elif bikeChoice == "6":
+                roadGradeStrategy = "FAVOR_ALL_HILLS"
+
+        elif bikeDecision == "no":
+            roadGradeStrategy = "DEFAULT_STRATEGY"
+
+        language = input("Which language do you want to use? [en_US, fr_FR, de_DE, ru_RU]: ")
+
+        url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest, "routeType":routeType, "locale":language, "roadGradeStrategy":roadGradeStrategy})
+
+    else:
+        language = input("Which language do you want to use? [en_US, fr_FR, de_DE, ru_RU]: ")
+        url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest, "routeType":routeType, "locale":language})
     bcolors.ENDC
     
-    url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest, "routeType":routeType, "locale": language})
-
     print(bcolors.OKBLUE + "URL: " + (url) + bcolors.ENDC)
 
     json_data = requests.get(url).json()
